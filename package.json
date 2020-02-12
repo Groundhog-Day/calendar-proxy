@@ -1,24 +1,29 @@
 {
-  "name": "gw-proxy",
+  "name": "calendar-proxy",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/9-airbnb-again/GW-proxy.git"
+    "url": "git+https://github.com/Groundhog-Day/calendar-proxy.git"
   },
-  "author": "Gal Weinstock",
+  "author": "Albert Kim",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/9-airbnb-again/GW-proxy/issues"
+    "url": "https://github.com/Groundhog-Day/calendar-proxy/issues"
   },
-  "homepage": "https://github.com/9-airbnb-again/GW-proxy#readme",
+  "homepage": "https://github.com/Groundhog-Day/calendar-proxy#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "morgan": "^1.9.1",
+    "nodemon": "^2.0.2"
   }
 }
