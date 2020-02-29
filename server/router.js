@@ -14,7 +14,6 @@ router.post('/:id/reservation', (req, res) => {
     .catch((err) => {
       res.sendStatus(500);
     });
-  // let accomodation_id = parseInt(req.originalUrl.match(/(?<=listings\/)(.*)(?=\/reservation)/));
 });
 
 // READ / GET
@@ -37,24 +36,32 @@ router.get('/:id', (req, res) => {
 
 // Update / PUT (extension)
 router.put('/:id/reservation/:id', (req, res) => {
-  psqlQuery.putReservation(1, {}, () => {
-    res.json('TESTING POST');
+  axios({
+    method: 'PUT',
+    url: 'http://localhost:3000/api/v1/listings' + req.url,
+    body: req.body
   })
+    .then((innerRes) => {
+      res.json(innerRes.data);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
 });
 
 // Delete / DELETE (extension)
 router.delete('/:id/reservation', (req, res) => {
-  let accomodation_id = parseInt(req.originalUrl.match(/(?<=listings\/)(.*)(?=\/reservation)/));
-  let {user_id, startDate} = req.body;
-
-  psqlQuery.deleteReservation(accomodation_id, user_id, startDate, (err, result) => {
-    if (err) {
-      res.sendStatus(500);
-    } else {
+  axios({
+    method: 'DELETE',
+    url: 'http://localhost:3000/api/v1/listings' + req.url,
+    body: req.body
+  })
+    .then((innerRes) => {
       res.sendStatus(200);
-    }
-  });
-
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
