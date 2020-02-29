@@ -3,15 +3,18 @@ const axios = require('axios');
 
 // CREATE / POST (extension)
 router.post('/:id/reservation', (req, res) => {
-  let accomodation_id = parseInt(req.originalUrl.match(/(?<=listings\/)(.*)(?=\/reservation)/));
-
-  psqlQuery.postReservation(accomodation_id, req.body, (err, data) => {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      res.sendStatus(201);
-    }
+  axios({
+    method: 'POST',
+    url: 'http://localhost:3000/api/v1/listings' + req.url,
+    body: req.body
   })
+    .then((innerRes) => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+  // let accomodation_id = parseInt(req.originalUrl.match(/(?<=listings\/)(.*)(?=\/reservation)/));
 });
 
 // READ / GET
