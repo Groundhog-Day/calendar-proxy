@@ -1,1 +1,1 @@
-# GW-proxy
+# calendar-proxy
